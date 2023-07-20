@@ -1,15 +1,15 @@
-package com.mycompany.lecciones;
-
-import javax.swing.JOptionPane;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+package com.mycompany.mavenproject5;
+
+import java.util.Arrays;
+import javax.swing.JOptionPane;
 
 /**
  *
- * @author Yazmin
+ * @author crisn
  */
 public class ClienteProyecto {
     /*creaccion de las variables del cliente
@@ -23,6 +23,12 @@ public class ClienteProyecto {
 
     /*se solicita el nombre al cliente, si agrega nùmeros se le dice que da error
     */
+    
+    public ClienteProyecto (String pNameCliente,String pIdCliente, String pNumTelefonico){
+        this.nameCliente = pNameCliente;
+        this.idCliente = pIdCliente;
+        this.numTelefonico = pNumTelefonico;
+    }
     public void setNameCliente(String pNameCliente) {
         if (pNameCliente.matches(".*\\d.*")) {
                 JOptionPane.showMessageDialog(null, "No se puede ingresar números, vuelva a intentarlo.");
@@ -38,18 +44,13 @@ public class ClienteProyecto {
     /* se solita el id con set, si es menor a 9 caractes o si se ingresa letras entonces da error
     */
     public void setIdCliente(String pIdCliente) {
-        boolean intentosErrores = true;
-        while (intentosErrores) {
-            if (pIdCliente.length()<9) {
-                JOptionPane.showMessageDialog(null, "Su identificacion ingresada no cuenta con 9 digitos");
-            } else if (pIdCliente.matches(".*\\D.*")) {
-                JOptionPane.showMessageDialog(null, "No se puede ingresar letras, vuelva a intentarlo.");
-            }else{
-                this.idCliente = pIdCliente;
-                intentosErrores = false;
-            }
+        if (pIdCliente.length()<9) {
+            JOptionPane.showMessageDialog(null, "Su identificacion ingresada no cuenta con 9 digitos");
+        } if (pIdCliente.matches(".*\\D.*")) {
+            JOptionPane.showMessageDialog(null, "No se puede ingresar letras, vuelva a intentarlo.");
+        }else{
+            this.idCliente = pIdCliente;
         }
-        
     }
     /* se muestra el id solo que en vez de mostrarlo completo solo se muestar los primeros 3 numeros 
     */
