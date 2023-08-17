@@ -11,27 +11,33 @@ import javax.swing.JOptionPane;
  * @author crisn
  */
 public class ClaseHoras {
-    String Horas[] = { "8:00","9:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00"
-        };
-    ClaseCitas citas[] = new ClaseCitas[1];
-    public void conseguirHorario() {
+    String horas;
+    String horarioEncontrado = "";
+
+    public ClaseHoras(String horas) {
+        this.horas = horas;
+    }
+
+    public ClaseHoras() {
+    }
+    
+    
+    public String conseguirHorarioBarbe0(ClaseHoras[] pHoras) {
         int indice = -1;
         String buscarHorario = "";
+        
          
         do {
-            buscarHorario =  JOptionPane.showInputDialog("8:00\n9:00\n10:00\n11:00\n12:00\13:00\n14:00\n15:00\n16:00\n17:00"+"\n"+"Digite el horario que desea reservar:", "");
-            for(int i = 0; i < Horas.length; i++) {
-                if (Horas[i].equals(buscarHorario)){
+            buscarHorario =  JOptionPane.showInputDialog("8:00\n9:00\n10:00\n11:00\n12:00\n13:00\n14:00\n15:00\n16:00\n17:00"+"\n"+"Digite el horario que desea reservar:", "");
+            for(int i = 0; i < pHoras.length; i++) {
+                
+                if (pHoras[i].horas.equals(buscarHorario) || (pHoras[i].horas == null) || (pHoras[i].horas.isEmpty())){
                     indice= i;
+                    horarioEncontrado = pHoras[i].horas;
                     break;
                 }
             }
         }while(indice ==-1);
-        if (Horas[indice] == "8:00"){
-            ClasePedirCita nuevaCita = new ClasePedirCita(); 
-            nuevaCita.AgregarCita();
-        }
-        
-        
+        return horarioEncontrado;
     } 
 }

@@ -12,22 +12,26 @@ import javax.swing.JOptionPane;
  */
 
     public class ClasePedirCita {
-    ClaseCitas arrCitas[] = new ClaseCitas[1];
-    public void AgregarCita() {
-        String textoCom = "";
-        for (int i = 0; i < arrCitas.length; i++) {
+    String textoCom = "";
+
+    public void AgregarCita(ClaseCitas[] pCitas) {
+        for (int i = 0; i < pCitas.length; i++) {
             String nameCliente = JOptionPane.showInputDialog("Digite su nombre:");
             String idCliente = JOptionPane.showInputDialog("Digite su id:");
             String numTelefonico = JOptionPane.showInputDialog("Digite su número telefonico:");
-            arrCitas[i] = new ClaseCitas(nameCliente, idCliente, numTelefonico);
+            pCitas[i] = new ClaseCitas(nameCliente, idCliente, numTelefonico);
 
         }
         JOptionPane.showMessageDialog(null, "Cita realizada exitosamente");
         
-        for (int i = 0; i < arrCitas.length; i++) {
-            textoCom += "Nombre: " + arrCitas[i].getNameCliente()+ "\n" + "Id: " + arrCitas[i].getIdCliente() + "\n" + "Número Telefonico: " + arrCitas[i].getNumTelefonico();
+        
+    }
+    public String visualizarCita(ClaseCitas[] pCitas) {
+        for (int i = 0; i < pCitas.length; i++) {
+            textoCom += "Nombre: " + pCitas[i].getNameCliente()+ "\n" + "Id: " + pCitas[i].getIdCliente() + "\n" + "Número Telefonico: " + pCitas[i].getNumTelefonico();
         }
         JOptionPane.showMessageDialog(null, textoCom);
+        return textoCom;
     }
 }
 

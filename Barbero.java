@@ -13,18 +13,26 @@ import javax.swing.JOptionPane;
  */
 public class Barbero {
 public String nombreBarbe;
-public String horaAlmuerzo ="11";
-public String texto ="";
-
-    //new Barbero[5];
-public Barbero(String name){
-   this.nombreBarbe = name;
-}
-public Barbero(){
-}
-
-
+public String horaAlmuerzo;
+private double saldo; 
+public String horario;
+        
+    public Barbero (String nombreBarbe, String horaAlmuerzo){
+        this.nombreBarbe = nombreBarbe;
+        this.horaAlmuerzo = horaAlmuerzo;
+    }
     
+    public Barbero(){
+        
+    }
+    
+    public String getNombreBarbe() {
+        return nombreBarbe;
+    }
+
+    public String getHoraAlmuerzo() {
+        return horaAlmuerzo;
+    }
 }
 
 
