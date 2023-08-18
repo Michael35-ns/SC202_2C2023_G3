@@ -2,90 +2,134 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package com.mycompany.lecciones;
+package com.mycompany.prueba;
 
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Yazmin
  */
-public class Menu_proyecto {
+public class MainProyecto {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        /** iniciacion de variables globales
-         */
-        int menu;
-        int menuAdmi;
-        int menuReser;
-        int menuDev;
-        int menuRevision;
-
-
+        //variables de los menus
+        int menu = -1;
+        int menuAdmi = -1;
+        int menuReser = -1;
+        int menuDev = -1;
+        int menuRevision = -1;
+        //objetos de las clases
+        //arreglos universales a utilizar
         
         
-        /** iniciacion de variables 
-         */
         JOptionPane.showMessageDialog(null, "Bienvenido a la Barbería ");
-               
-        
+
         
         /**menú principal 
          */
-        while (true) {
-            JOptionPane.showMessageDialog(null, " Opciones: \n 1. Administración del personal " + "\n 2. Reservación" + "\n 3. Devoluciones"
-            + "\n 4. Revisión de agendas" + "\n 5. Salir del sistema");
-            menu = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese su opción:"));
-            if (menu == 1) {
-                while (true) {
-                    JOptionPane.showMessageDialog(null, " Opciones: \n 1. Visualizar empleados " + "\n 2. Agregar empleados" + "\n 3. Modificar empleados" + "\n 4. Salir");
-                    menuAdmi = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese su opción:"));
-                    if (menuAdmi == 1 ) {
-                        System.out.println("Visualizar");
-                    }
-                    if (menuAdmi == 2) {
-                        System.out.println("agregar");
-                    }
-                    if (menuAdmi == 3) {
-                            System.out.println("Cambios");
-                    }
-                    if (menuAdmi == 4 ) {
-                        JOptionPane.showMessageDialog(null, "Muchas gracias por estar en el apartado de administración, vas a volver al menú principal");
+    while (menu != 0) {
+        menu = Integer.parseInt(JOptionPane.showInputDialog("""
+                                                                                            Opciones: 
+                                                                                            1. Administración del personal 
+                                                                                            2. Reservaciones
+                                                                                            3. Devoluciones
+                                                                                            4. Revisión de agendas
+                                                                                            0. Salir del sistema"""));
+        switch(menu){
+            case 1:
+                boolean hayAdministracion = true;
+                while(hayAdministracion){ 
+                menuAdmi = Integer.parseInt(JOptionPane.showInputDialog("""
+                                                                                                                 Opciones:   
+                                                                                                                 1. Agregar Empleados
+                                                                                                                 2. Visualizar Empleados   
+                                                                                                                 0. Regresar al menú principal"""));
+                switch(menuAdmi){
+                    case 1: 
+                        
+                        break;
+                    case 2:
+                        
+                        break;
+                    case 0:
+                        JOptionPane.showMessageDialog(null, "Regresando al menú principal");
+                        hayAdministracion = false; 
                         break;
                     }
-                    else if ((menuAdmi !=1) && (menuAdmi !=2) && (menuAdmi != 3) && (menuAdmi != 4) ) {
-                        JOptionPane.showMessageDialog(null, "No ha digitado una opción valida, vuelva a digitar una opción");
-
+                }
+                break;             
+            case 2:
+                boolean hayReservacion = true;
+                while(hayReservacion){
+                   menuReser = Integer.parseInt(JOptionPane.showInputDialog("""
+                                                                                                                        Opciones:
+                                                                                                                        1. Crear Reservación
+                                                                                                                        0. Salir
+                                                                                                                                                   """));
+                    switch(menuReser){
+                        case 1:
+                            
+                            
+                            break;
+                        case 0:
+                            JOptionPane.showMessageDialog(null,"Regresando al menú principal" );
+                            hayReservacion = false;
+                            break;
+                        default:
+                            JOptionPane.showMessageDialog(null,"Su opción es inválida, por favor ingrese un número que se encuentre en el menú");
+                            break;
                     }
                 }
-            }
-            if (menu == 2) {
-                while (true) {
-                    JOptionPane.showMessageDialog(null, " Opciones: \n 1. Crear Reservación \n 2. Salir");
-                    menuReser = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese su opción:"));
+                break;
+            case 3:
+                boolean hayDevoluciones = true;
+                while(hayDevoluciones){
+                    menuDev = Integer.parseInt(JOptionPane.showInputDialog("1.Realizar devolucion\n0.Salir", ""));
+                    switch (menuDev) {
+                        case 1:
+                            break;
+                        case 0: 
+                            JOptionPane.showMessageDialog(null,"Regresando al menú principal" );
+                            hayDevoluciones = false;
+                            break;
+                        default:
+                            JOptionPane.showMessageDialog(null,"Su opción es inválida, por favor ingrese un número que se encuentre en el menú");
+                            break;
+                    }
                 }
-            }
-            if (menu == 3) {
+                break;
+            case 4:
+                boolean hayRevision = true;
+                while(hayRevision){
+                    menuRevision = Integer.parseInt(JOptionPane.showInputDialog("1.Revisar Agenda\n0.Salir", ""));
+                    switch (menuRevision) {
+                        case 1:
+                            break;
+                        case 0: 
+                            JOptionPane.showMessageDialog(null,"Regresando al menú principal" );
+                            hayRevision = false;
+                            break;
+                        default:
+                            JOptionPane.showMessageDialog(null, "Su opción es inválida, por favor ingrese un número que se encuentre en el menú");
+                            break;
+                    }
+                }
+                break;
+            case 0:
+                JOptionPane.showMessageDialog(null,"¡Gracias por usar el programa!"
+                        + "¡Nos vemos pronto.");
+                menu = 0;
+                break;
+            default:
+                JOptionPane.showMessageDialog(null,"Su opción es inválida, por favor ingrese un número que se encuentre en el menú");
                 break;
             }
-            if (menu == 4) {
-                break;
-            }
-            if (menu == 5) {
-                JOptionPane.showMessageDialog(null, "¡Hasta luego, gracias por usar el programas!");
-                break;  
-
-            }
-            else if ((menu !=1) && (menu !=2) && (menu != 3) && (menu != 4) && (menu != 5)) {
-                JOptionPane.showMessageDialog(null, "No ha digitado una opción valida, vuelva a digitar una opción");
-            }
-        
         }
-        
-    }
     
+    }
 }
