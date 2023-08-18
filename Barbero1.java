@@ -52,5 +52,26 @@ public class Barbero1 {
             }while(indice == -1);
             return barberoEncontrado;
     }
+         public void verAgenda(ClaseCitas[] arrCitas, ClaseHoras[] horasEmpleados, Barbero arrBarber[] ){
+             String barbeOcupado = "";
+             String texto = "";
+             String textoDos = "";
+            if(barberoEncontrado == arrBarber[0].nombreBarbe){
+            barbeOcupado = barberoEncontrado;
+                for(int i =0; i<arrCitas.length;i++){
+                    if(arrCitas[i] != null && arrCitas.length > 0){
+                        texto += "Las citas guardadas son: "+ arrCitas[i];
+                    }
+                    }JOptionPane.showMessageDialog(null, texto +" \n");
+                  for(int i =0; i<horasEmpleados.length; i++){
+                      if(horasEmpleados[i] != null && horasEmpleados.length > 0){
+                        textoDos += "Las citas guardadas son: "+ horasEmpleados[i];
+                    }
+                  }JOptionPane.showMessageDialog(null, textoDos +" \n");
+        
+            }
+            
+        
+    }
 }
 
