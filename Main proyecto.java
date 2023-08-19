@@ -24,7 +24,45 @@ public class MainProyecto {
         int menuDev = -1;
         int menuRevision = -1;
         //objetos de las clases
+        MetodosBarber nuevoBarber = new MetodosBarber();
+        ClaseMes nuevoMes = new ClaseMes();
+        ClaseDias nuevoDia = new ClaseDias();
+        ClaseHoras nuevaHora = new ClaseHoras();
+        ClaseCitas nuevaCita = new ClaseCitas();
+        ClaseDevoluciones nuevaDevolucion = new ClaseDevoluciones();
         //arreglos universales a utilizar
+        Barbero arrBarber[] = new Barbero[5];
+        ClaseMes[] arrMeses = {
+            new ClaseMes("Enero"), 
+            new ClaseMes("Febrero"), 
+            new ClaseMes("Marzo"),
+            new ClaseMes("Abril"), 
+            new ClaseMes("Mayo"),
+            new ClaseMes("Junio"),
+            new ClaseMes("Julio"),
+            new ClaseMes("Agosto"),
+            new ClaseMes("Septiembre"),
+            new ClaseMes("Octubre"),
+            new ClaseMes("Noviembre"), 
+            new ClaseMes("Diciembre")
+        };
+        ClaseDias arrDia[] = new ClaseDias[31];
+        for (int i = 0; i < arrDia.length; i++) {
+            arrDia[i] = new ClaseDias(i);
+        }
+        ClaseHoras horasEmpleados[] = {
+         new ClaseHoras("8:000"),
+         new ClaseHoras("9:00"),
+         new ClaseHoras("10:00"),
+         new ClaseHoras("11:00"),
+         new ClaseHoras("12:00"),
+         new ClaseHoras("13:00"),
+         new ClaseHoras("14:00"),
+         new ClaseHoras("15:00"),
+         new ClaseHoras("16:00"),
+         new ClaseHoras("17:00"),
+        };
+        ClaseCitas arrCitas[] = new ClaseCitas[1];
         
         
         JOptionPane.showMessageDialog(null, "Bienvenido a la Barbería ");
@@ -51,10 +89,15 @@ public class MainProyecto {
                                                                                                                  0. Regresar al menú principal"""));
                 switch(menuAdmi){
                     case 1: 
-                        
+                        for(int i = 0; i < arrBarber.length; i++){
+                            String nombreBarbe = JOptionPane.showInputDialog("Ingrese el nombre del barbero "+i);
+                            String horaAlmuerzo = JOptionPane.showInputDialog("Ingrese la hora de almuerzo del barbero "+i);
+                            arrBarber[i] = new Barbero(nombreBarbe, horaAlmuerzo);
+                        }
+                        JOptionPane.showMessageDialog(null, "Barberos agregados correctamente");
                         break;
                     case 2:
-                        
+                        nuevoBarber.visualizarBarber(arrBarber);
                         break;
                     case 0:
                         JOptionPane.showMessageDialog(null, "Regresando al menú principal");
@@ -69,16 +112,24 @@ public class MainProyecto {
                    menuReser = Integer.parseInt(JOptionPane.showInputDialog("""
                                                                                                                         Opciones:
                                                                                                                         1. Crear Reservación
-                                                                                                                        2. Revisar Reservación
                                                                                                                         0. Salir
                                                                                                                                                    """));
                     switch(menuReser){
                         case 1:
-                            
-                            
+                            for (int i =0; i< arrCitas.length; i++){
+                                nuevoMes.ConseguirMes(arrMeses);
+                                nuevoDia.AgregarDia(arrDia);
+                                nuevoBarber.ConseguirBarbero(arrBarber);
+                                int horasTotales = Integer.parseInt(JOptionPane.showInputDialog("Digite las horas totales: "));
+                                nuevaHora.conseguirHorarioBarbe0(horasEmpleados, arrBarber, nuevoBarber.barberoEncontrado);
+                                String nameCliente = JOptionPane.showInputDialog("Digite su nombre:");
+                                String idCliente = JOptionPane.showInputDialog("Digite su id:");
+                                String numTelefonico = JOptionPane.showInputDialog("Digite su número telefonico:");    
+                                nuevoBarber.obtenerPrecio(nuevoMes.mesEncontrado, nuevoDia.diaEncontrado, horasTotales);
+                                arrCitas[i] = new ClaseCitas(nameCliente, idCliente, numTelefonico, nuevoMes.mesEncontrado, nuevoDia.diaEncontrado, nuevoBarber.barberoEncontrado, nuevaHora.horarioEncontrado, nuevoBarber.precioTotal);
+                            }
+                            nuevaCita.visualizarCita(arrCitas);
                             break;
-                        case 2: 
-                            break; 
                         case 0:
                             JOptionPane.showMessageDialog(null,"Regresando al menú principal" );
                             hayReservacion = false;
@@ -95,6 +146,7 @@ public class MainProyecto {
                     menuDev = Integer.parseInt(JOptionPane.showInputDialog("1.Realizar devolucion\n0.Salir", ""));
                     switch (menuDev) {
                         case 1:
+                           nuevaDevolucion.Devolucion(arrCitas);
                             break;
                         case 0: 
                             JOptionPane.showMessageDialog(null,"Regresando al menú principal" );
@@ -112,6 +164,41 @@ public class MainProyecto {
                     menuRevision = Integer.parseInt(JOptionPane.showInputDialog("1.Revisar Agenda\n0.Salir", ""));
                     switch (menuRevision) {
                         case 1:
+                            String nombreBarbe = JOptionPane.showInputDialog("Digite el nombre del barbero");
+                            int dia = Integer.parseInt(JOptionPane.showInputDialog("Digite el dia:"));
+                            String output = "Agenda para el barbero " + nombreBarbe + " en el día " + dia + ":\n";
+                            double totalGanado = 0.0;
+                            boolean barberoEncontrado = false;
+                            for (int i = 0; i < horasEmpleados.length; i++) {
+                                boolean citaEncontrada = false;
+                                boolean horaDeAlmuerzo = false;
+
+                                for (int j = 0; j < arrCitas.length; j++) {
+                                    if (arrCitas[j].getBarber().equalsIgnoreCase(nombreBarbe) && arrCitas[j].getDia() == dia && arrCitas[j].getHora().equals(horasEmpleados[i].horas)) {
+                                        citaEncontrada = true;
+                                        output += horasEmpleados[i].horas + " - Cliente: " + arrCitas[j].getNameCliente() + " (ID: " + arrCitas[j].getIdCliente() + ", Teléfono: " + arrCitas[j].getNumTelefonico() + ")\n";
+                                        totalGanado += arrCitas[j].getPrecio();
+                                        break;
+                                    }
+                                }
+
+                                if (!citaEncontrada) {
+                                    horaDeAlmuerzo = false; 
+                                    for (int a = 0; a < arrBarber.length; a++) {
+                                        if (horasEmpleados[i].horas.equals(arrBarber[a].horaAlmuerzo)) { // Usar 'a' para el índice de barberos
+                                            output += horasEmpleados[i].horas + " - HORA DE ALMUERZO\n";
+                                            horaDeAlmuerzo = true;
+                                            break; // 
+                                        }
+                                    }
+
+                                    if (!horaDeAlmuerzo) {
+                                        output += horasEmpleados[i].horas + " - VACIO\n";
+                                    }
+                                }
+                            }
+                            output += "Total ganado por el barbero en el día: $" + totalGanado;
+                            JOptionPane.showMessageDialog(null, output);
                             break;
                         case 0: 
                             JOptionPane.showMessageDialog(null,"Regresando al menú principal" );
