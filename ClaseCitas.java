@@ -72,6 +72,7 @@ public class ClaseCitas {
         this.dia = diaElegido;
         this.mes = pMesElegido;
         this.hora = horaElegida;
+        this.precio = pPrecio;
         
     }  
     //metodo para poder visualizar la informacion de la cita completada
