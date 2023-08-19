@@ -51,7 +51,7 @@ public class MainProyecto {
             arrDia[i] = new ClaseDias(i);
         }
         ClaseHoras horasEmpleados[] = {
-         new ClaseHoras("8:000"),
+         new ClaseHoras("8:00"),
          new ClaseHoras("9:00"),
          new ClaseHoras("10:00"),
          new ClaseHoras("11:00"),
@@ -125,8 +125,10 @@ public class MainProyecto {
                                 String nameCliente = JOptionPane.showInputDialog("Digite su nombre:");
                                 String idCliente = JOptionPane.showInputDialog("Digite su id:");
                                 String numTelefonico = JOptionPane.showInputDialog("Digite su número telefonico:");    
-                                nuevoBarber.obtenerPrecio(nuevoMes.mesEncontrado, nuevoDia.diaEncontrado, horasTotales);
-                                arrCitas[i] = new ClaseCitas(nameCliente, idCliente, numTelefonico, nuevoMes.mesEncontrado, nuevoDia.diaEncontrado, nuevoBarber.barberoEncontrado, nuevaHora.horarioEncontrado, nuevoBarber.precioTotal);
+                                int mesEncontrado = nuevoMes.indice;
+                                int diaEncontrado = nuevoDia.diaEncontrado;
+                                double precioTotal = nuevoBarber.obtenerPrecio( mesEncontrado,diaEncontrado, horasTotales);
+                                arrCitas[i] = new ClaseCitas(nameCliente, idCliente, numTelefonico, nuevoMes.mesEncontrado, nuevoDia.diaEncontrado, nuevoBarber.barberoEncontrado, nuevaHora.horarioEncontrado, precioTotal);
                             }
                             nuevaCita.visualizarCita(arrCitas);
                             break;
