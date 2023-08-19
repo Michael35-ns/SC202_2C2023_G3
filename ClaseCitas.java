@@ -78,7 +78,7 @@ public class ClaseCitas {
     public String visualizarCita(ClaseCitas[] pCitas) {
         String textoCom = "";
         for (int i = 0; i < pCitas.length; i++) {
-            textoCom = "Mes: " + pCitas[i].mes +"\nDia: " + pCitas[i].dia + "\nBarbero: " + pCitas[i].barber + "\nHora: " + pCitas[i].hora + "\nNombre: " + pCitas[i].getNameCliente()+ "\n" + "Id: " + pCitas[i].getIdCliente() + "\n" + "Número Telefonico: " + pCitas[i].getNumTelefonico() + "Total:" + pCitas[i].getPrecio();
+            textoCom = "Mes: " + pCitas[i].mes +"\nDia: " + pCitas[i].dia + "\nBarbero: " + pCitas[i].barber + "\nHora: " + pCitas[i].hora + "\nNombre: " + pCitas[i].getNameCliente()+ "\n" + "Id: " + pCitas[i].getIdCliente() + "\n" + "Número Telefonico: " + pCitas[i].getNumTelefonico() + "\nTotal:" + pCitas[i].getPrecio();
         }
         JOptionPane.showMessageDialog(null, textoCom);
         return textoCom;
