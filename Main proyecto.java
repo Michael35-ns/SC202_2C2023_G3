@@ -69,6 +69,7 @@ public class MainProyecto {
                    menuReser = Integer.parseInt(JOptionPane.showInputDialog("""
                                                                                                                         Opciones:
                                                                                                                         1. Crear Reservación
+                                                                                                                        2. Revisar Reservación
                                                                                                                         0. Salir
                                                                                                                                                    """));
                     switch(menuReser){
@@ -76,6 +77,8 @@ public class MainProyecto {
                             
                             
                             break;
+                        case 2: 
+                            break; 
                         case 0:
                             JOptionPane.showMessageDialog(null,"Regresando al menú principal" );
                             hayReservacion = false;
